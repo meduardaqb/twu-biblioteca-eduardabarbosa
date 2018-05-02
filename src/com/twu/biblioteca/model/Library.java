@@ -1,5 +1,6 @@
 package com.twu.biblioteca.model;
 import com.twu.biblioteca.data.Api;
+import com.twu.biblioteca.data.ApiInterface;
 import com.twu.biblioteca.exception.BookCheckedOutException;
 import com.twu.biblioteca.exception.NonExistBookException;
 import com.twu.biblioteca.exception.BookReturnException;
@@ -9,10 +10,11 @@ import java.util.stream.Collectors;
 
 public class Library {
 
+
     private List<Book> books;
 
-    public Library() {
-        this.books = new Api().getBooks();
+    public Library(ApiInterface api) {
+        books = api.getBooks();
     }
 
     public List<Book> getBookList() {
@@ -20,7 +22,7 @@ public class Library {
     }
 
     public List<Book> getAvailableBookList() {
-        return books.stream()
+        return getBookList().stream()
                 .filter(Book::isAvailable)
                 .collect(Collectors.toList());
     }
@@ -57,15 +59,15 @@ public class Library {
     }
 
     private int getBookIndexInList(Book book) throws NonExistBookException {
-        for (int index = 0; index < books.size(); index++) {
-            if (books.get(index).equals(book))
+        for (int index = 0; index < getBookList().size(); index++) {
+            if (getBookList().get(index).equals(book))
                 return index;
         }
         throw new NonExistBookException();
     }
 
     private void updateBookAvailability(int bookIndex, boolean availability) {
-        this.books.get(bookIndex).setAvailable(availability);
+        this.getBookList().get(bookIndex).setAvailable(availability);
     }
 
     private void verifyBook(Book book) throws NonExistBookException {

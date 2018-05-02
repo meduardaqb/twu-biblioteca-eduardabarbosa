@@ -1,11 +1,12 @@
-package com.twu.biblioteca.data;
+package com.twu.biblioteca.mocks;
 
+import com.twu.biblioteca.data.ApiInterface;
 import com.twu.biblioteca.model.Book;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Api implements ApiInterface {
+public class ApiMock implements ApiInterface {
 
     @Override
     public List<Book> getBooks() {

@@ -1,44 +1,52 @@
 package com.twu.biblioteca.menu;
 
+import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.util.Constants;
+import com.twu.biblioteca.util.IoOperationInterface;
 
-public class CustomerMenu extends Menu {
-    private MainMenu mainMenu;
+public class CustomerMenu implements CustomerMenuInterface {
+    private UserTypeMenuInterface userTypeMenu;
+    private IoOperationInterface io;
+    private Library library;
 
-    public CustomerMenu(MainMenu mainMenu) {
-        this.mainMenu = mainMenu;
+    public CustomerMenu(UserTypeMenuInterface userTypeMenu, IoOperationInterface io, Library library) {
+        this.userTypeMenu = userTypeMenu;
+        this.io = io;
+        this.library = library;
     }
 
+    @Override
     public void customerMenu() {
-        printMessage(Constants.WELCOME_MESSAGE);
-        printMessage(Constants.LIST_BOOKS);
-        printMessage(Constants.BACK);
+        io.printMessage(Constants.WELCOME_MESSAGE);
+        io.printMessage(Constants.LIST_BOOKS);
+        io.printMessage(Constants.BACK);
 
-        handleCustomerMenuChoice(getInput());
+        handleCustomerMenuChoice(io.getInput());
     }
 
     private void handleCustomerMenuChoice(String input) {
         if (input.equals("l")) {
             bookListMenu();
         } else if (input.equals("b")) {
-            this.mainMenu.main();
+            this.userTypeMenu.userTypeChoiceMenu();
+
         } else {
-            printErrorMessage();
+            io.printErrorMessage();
             customerMenu();
         }
     }
 
     private void bookListMenu() {
-        showBookList(this.mainMenu.library.getAvailableBookList());
-        printMessage(Constants.BACK);
-        handleBookListMenuChoice(getInput());
+        io.showBookList(this.library.getAvailableBookList());
+        io.printMessage(Constants.BACK);
+        handleBookListMenuChoice(io.getInput());
     }
 
     private void handleBookListMenuChoice(String input) {
         if (input.equals("b")) {
-            this.mainMenu.main();
+            this.userTypeMenu.userTypeChoiceMenu();
         } else {
-            printErrorMessage();
+            io.printErrorMessage();
             bookListMenu();
         }
     }
