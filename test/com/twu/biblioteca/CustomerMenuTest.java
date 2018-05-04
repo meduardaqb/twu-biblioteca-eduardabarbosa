@@ -10,6 +10,8 @@ import com.twu.biblioteca.util.IoOperationInterface;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.LinkedList;
+
 public class CustomerMenuTest {
 
     @Test
@@ -17,9 +19,14 @@ public class CustomerMenuTest {
         Library library = new Library(new ApiMock());
         UserTypeMenuInterface userTypeMenu = new UserTypeMenuMock();
         IoOperationInterface ioOperation = new IoOperationMock();
-        ((IoOperationMock) ioOperation).setInputReturn("b");
 
-        CustomerMenu customerMenu = new CustomerMenu(userTypeMenu, ioOperation, library);
+        LinkedList<String> linkedList = new LinkedList<String>();
+        linkedList.add("b");
+        ((IoOperationMock) ioOperation).setInputReturn(linkedList);
+
+
+
+        CustomerMenu customerMenu = new CustomerMenu(userTypeMenu, ioOperation, library, new ApiMock());
 
         customerMenu.customerMenu();
 
@@ -32,9 +39,11 @@ public class CustomerMenuTest {
         Library library = new Library(new ApiMock());
         UserTypeMenuMock userTypeMenu = new UserTypeMenuMock();
         IoOperationMock ioOperation = new IoOperationMock();
-        ioOperation.setInputReturn("l");
+        LinkedList<String> linkedList = new LinkedList<String>();
+        linkedList.add("l");
+        ioOperation.setInputReturn(linkedList);
 
-        CustomerMenu customerMenu = new CustomerMenu(userTypeMenu, ioOperation, library);
+        CustomerMenu customerMenu = new CustomerMenu(userTypeMenu, ioOperation, library, new ApiMock());
 
         try {
             customerMenu.customerMenu();
@@ -48,13 +57,33 @@ public class CustomerMenuTest {
         Library library = new Library(new ApiMock());
         UserTypeMenuMock userTypeMenu = new UserTypeMenuMock();
         IoOperationMock ioOperation = new IoOperationMock();
-        ioOperation.setInputReturn("c");
+        LinkedList<String> linkedList = new LinkedList<String>();
+        linkedList.add("c");
+        ioOperation.setInputReturn(linkedList);
 
-        CustomerMenu customerMenu = new CustomerMenu(userTypeMenu, ioOperation, library);
+        CustomerMenu customerMenu = new CustomerMenu(userTypeMenu, ioOperation, library, new ApiMock());
 
         try {
             customerMenu.customerMenu();
             Assert.assertTrue(!userTypeMenu.userTypeChoiceMenuWasCalled && !ioOperation.showBookListWasCalled);
+        } catch(StackOverflowError e) { }
+    }
+
+
+    @Test
+    public void customerMenuShouldCallPrintMessage() {
+        Library library = new Library(new ApiMock());
+        UserTypeMenuMock userTypeMenu = new UserTypeMenuMock();
+        IoOperationMock ioOperation = new IoOperationMock();
+        LinkedList<String> linkedList = new LinkedList<String>();
+        linkedList.add("u");
+        ioOperation.setInputReturn(linkedList);
+
+        CustomerMenu customerMenu = new CustomerMenu(userTypeMenu, ioOperation, library, new ApiMock());
+
+        try {
+            customerMenu.customerMenu();
+            Assert.assertTrue(ioOperation.printMessageWasCalled);
         } catch(StackOverflowError e) { }
     }
 }

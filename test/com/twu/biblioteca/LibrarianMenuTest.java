@@ -8,6 +8,8 @@ import com.twu.biblioteca.model.Library;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.LinkedList;
+
 public class LibrarianMenuTest {
 
     @Test
@@ -15,7 +17,9 @@ public class LibrarianMenuTest {
         Library library = new Library(new ApiMock());
         UserTypeMenuMock userTypeMenu = new UserTypeMenuMock();
         IoOperationMock ioOperation = new IoOperationMock();
-        ioOperation.setInputReturn("c");
+        LinkedList<String> linkedList = new LinkedList<String>();
+        linkedList.add("c");
+        ioOperation.setInputReturn(linkedList);
 
         LibrarianMenu librarianMenu = new LibrarianMenu(userTypeMenu, ioOperation, library);
 
@@ -30,7 +34,9 @@ public class LibrarianMenuTest {
         Library library = new Library(new ApiMock());
         UserTypeMenuMock userTypeMenu = new UserTypeMenuMock();
         IoOperationMock ioOperation = new IoOperationMock();
-        ioOperation.setInputReturn("r");
+        LinkedList<String> linkedList = new LinkedList<String>();
+        linkedList.add("r");
+        ioOperation.setInputReturn(linkedList);
 
         LibrarianMenu librarianMenu = new LibrarianMenu(userTypeMenu, ioOperation, library);
 
@@ -45,7 +51,9 @@ public class LibrarianMenuTest {
         Library library = new Library(new ApiMock());
         UserTypeMenuMock userTypeMenu = new UserTypeMenuMock();
         IoOperationMock ioOperation = new IoOperationMock();
-        ioOperation.setInputReturn("r");
+        LinkedList<String> linkedList = new LinkedList<String>();
+        linkedList.add("r");
+        ioOperation.setInputReturn(linkedList);
 
         LibrarianMenu librarianMenu = new LibrarianMenu(userTypeMenu, ioOperation, library);
 
@@ -60,7 +68,9 @@ public class LibrarianMenuTest {
         Library library = new Library(new ApiMock());
         UserTypeMenuMock userTypeMenu = new UserTypeMenuMock();
         IoOperationMock ioOperation = new IoOperationMock();
-        ioOperation.setInputReturn("x");
+        LinkedList<String> linkedList = new LinkedList<String>();
+        linkedList.add("x");
+        ioOperation.setInputReturn(linkedList);
 
         LibrarianMenu librarianMenu = new LibrarianMenu(userTypeMenu, ioOperation, library);
 

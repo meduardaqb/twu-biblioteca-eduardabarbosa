@@ -14,7 +14,7 @@ public class UserTypeMenu implements UserTypeMenuInterface {
 
     public UserTypeMenu(IoOperationInterface io, ApiInterface api) {
         this.library = new Library(api);
-        this.customerMenu = new CustomerMenu(this, io, this.library);
+        this.customerMenu = new CustomerMenu(this, io, this.library, api);
         this.librarianMenu = new LibrarianMenu(this, io, this.library);
         this.io = io;
     }

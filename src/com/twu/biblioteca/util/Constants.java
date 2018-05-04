@@ -8,6 +8,7 @@ public class Constants {
     public static final String BACK = "b - Back";
     public static final String INVALID_CARACTER = "Select a valid option!";
     public static final String LIST_BOOKS = "l - List Books";
+    public static final String USER_INFORMATION = "u - User information";
     public static final String SELECT_ACTION = "Select action";
     public static final String RETURN_BOOK = "r - Return book";
     public static final String CHECKOUT_BOOK = "c - Checkout book";
@@ -17,4 +18,9 @@ public class Constants {
     public static final String UNSUCCESSFUL_CHECKOUT = "That book is not available";
     public static final String SUCCESSFUL_RETURN = "Thank you for returning the book";
     public static final String UNSUCCESSFUL_RETURN = "That is not a valid book to return.";
+    public static final String USER_REGISTRATION = "Tap your registration";
+    public static final String USER_PASSWORD = "Tap your password";
+    public static final String INVALID_REGISTRATION = "You tapped an invalid registration";
+    public static final String AUTH_ERROR = "Authentication error";
+    public static final String USER_NON_EXISTS = "User non exists";
 }

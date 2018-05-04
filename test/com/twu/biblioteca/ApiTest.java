@@ -11,4 +11,10 @@ public class ApiTest
         Api api = new Api();
         Assert.assertNotNull(api.getBooks());
     }
+
+    @Test
+    public void getUsers() {
+        Api api = new Api();
+        Assert.assertNotNull(api.getUsers());
+    }
 }

@@ -3,20 +3,28 @@ package com.twu.biblioteca.mocks;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.util.IoOperationInterface;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class IoOperationMock implements IoOperationInterface {
 
-    public boolean getInoutWasCalled = false;
+    public boolean getInputoutWasCalled = false;
     public boolean printErrorMessageWasCalled = false;
+    public boolean printMessageWasCalled = false;
     public boolean showBookListWasCalled = false;
 
-    private String inputReturn = "";
+    private LinkedList<String> inputQueue;
 
     @Override
     public String getInput() {
-        getInoutWasCalled = true;
-        return this.inputReturn;
+        getInputoutWasCalled = true;
+
+        if (this.inputQueue.size() != 0) {
+            String input = this.inputQueue.getFirst();
+            this.inputQueue.removeFirst();
+            return input;
+        }
+        return "";
     }
 
     @Override
@@ -26,7 +34,7 @@ public class IoOperationMock implements IoOperationInterface {
 
     @Override
     public void printMessage(String message) {
-
+        printMessageWasCalled = true;
     }
 
     @Override
@@ -34,7 +42,7 @@ public class IoOperationMock implements IoOperationInterface {
         showBookListWasCalled = true;
     }
 
-    public void setInputReturn(String inputReturn) {
-        this.inputReturn = inputReturn;
+    public void setInputReturn(LinkedList<String> inputQueue) {
+        this.inputQueue = inputQueue;
     }
 }
