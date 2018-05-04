@@ -1,5 +1,6 @@
 package com.twu.biblioteca.menu;
 
+import com.twu.biblioteca.data.ApiInterface;
 import com.twu.biblioteca.exception.BookCheckedOutException;
 import com.twu.biblioteca.exception.BookReturnException;
 import com.twu.biblioteca.exception.NonExistBookException;
@@ -9,15 +10,43 @@ import com.twu.biblioteca.util.Constants;
 import com.twu.biblioteca.util.IoOperationInterface;
 
 
-public class LibrarianMenu  implements LibrarianMenuInterface {
+public class LibrarianMenu implements LibrarianMenuInterface {
     private UserTypeMenuInterface userTypeMenu;
     private IoOperationInterface io;
     private Library library;
+    private LoginMenu loginMenuCheckout;
+    private LoginMenu loginMenuReturn;
 
-    public LibrarianMenu(UserTypeMenuInterface userTypeMenu, IoOperationInterface io, Library library) {
+    public LibrarianMenu(UserTypeMenuInterface userTypeMenu, IoOperationInterface io, Library library, ApiInterface api) {
         this.userTypeMenu = userTypeMenu;
         this.io = io;
         this.library = library;
+
+        this.loginMenuCheckout = new LoginMenu(new AuthResponseInterface() {
+            @Override
+            public void onSignInSuccess() {
+                checkoutBookMenu();
+                librarianMenu();
+            }
+
+            @Override
+            public void onSignInError() {
+                librarianMenu();
+            }
+        }, io, api);
+
+        this.loginMenuReturn = new LoginMenu(new AuthResponseInterface() {
+            @Override
+            public void onSignInSuccess() {
+                returnBookMenu();
+                librarianMenu();
+            }
+
+            @Override
+            public void onSignInError() {
+                librarianMenu();
+            }
+        }, io, api);
     }
 
     @Override
@@ -32,9 +61,9 @@ public class LibrarianMenu  implements LibrarianMenuInterface {
 
     private void handleLibrarianMenu(String input) {
         if (input.equals("c")) {
-            this.checkoutBookMenu();
+            this.loginMenuCheckout.signInForm();
         } else if (input.equals("r")) {
-            this.returnBookMenu();
+            this.loginMenuReturn.signInForm();
         } else if (input.equals("b")) {
             this.userTypeMenu.userTypeChoiceMenu();
         } else {

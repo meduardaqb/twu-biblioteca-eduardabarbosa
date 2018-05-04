@@ -21,7 +21,7 @@ public class LibrarianMenuTest {
         linkedList.add("c");
         ioOperation.setInputReturn(linkedList);
 
-        LibrarianMenu librarianMenu = new LibrarianMenu(userTypeMenu, ioOperation, library);
+        LibrarianMenu librarianMenu = new LibrarianMenu(userTypeMenu, ioOperation, library, new ApiMock());
 
         try {
             librarianMenu.librarianMenu();
@@ -38,7 +38,7 @@ public class LibrarianMenuTest {
         linkedList.add("r");
         ioOperation.setInputReturn(linkedList);
 
-        LibrarianMenu librarianMenu = new LibrarianMenu(userTypeMenu, ioOperation, library);
+        LibrarianMenu librarianMenu = new LibrarianMenu(userTypeMenu, ioOperation, library, new ApiMock());
 
         try {
             librarianMenu.librarianMenu();
@@ -55,7 +55,7 @@ public class LibrarianMenuTest {
         linkedList.add("r");
         ioOperation.setInputReturn(linkedList);
 
-        LibrarianMenu librarianMenu = new LibrarianMenu(userTypeMenu, ioOperation, library);
+        LibrarianMenu librarianMenu = new LibrarianMenu(userTypeMenu, ioOperation, library, new ApiMock());
 
         try {
             librarianMenu.librarianMenu();
@@ -72,7 +72,7 @@ public class LibrarianMenuTest {
         linkedList.add("x");
         ioOperation.setInputReturn(linkedList);
 
-        LibrarianMenu librarianMenu = new LibrarianMenu(userTypeMenu, ioOperation, library);
+        LibrarianMenu librarianMenu = new LibrarianMenu(userTypeMenu, ioOperation, library, new ApiMock());
 
         try {
             librarianMenu.librarianMenu();

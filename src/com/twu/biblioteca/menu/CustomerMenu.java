@@ -90,6 +90,5 @@ public class CustomerMenu implements CustomerMenuInterface {
         io.printMessage("Phone Number: " + user.getPhoneNumber());
         io.printMessage("Address: " + user.getAddress());
         io.printMessage("");
-
     }
 }
