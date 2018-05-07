@@ -1,6 +1,7 @@
 package com.twu.biblioteca.util;
 
 import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.Movie;
 
 import java.util.List;
 import java.util.Scanner;
@@ -30,6 +31,16 @@ public class IoOperation implements IoOperationInterface {
             printMessage(index + " - " + bookList.get(index).getName() + ", " +
                     bookList.get(index).getAuthor() + ", " +
                     bookList.get(index).getYearPublished() );
+        }
+    }
+
+    @Override
+    public void showMovieList(List<Movie> movieList) {
+        for (int index = 0; index < movieList.size(); index++) {
+            printMessage(index + " - " + movieList.get(index).getName() + ", " +
+                    movieList.get(index).getDirector() + ", " +
+                    movieList.get(index).getYear() + ", " +
+                    movieList.get(index).getRating());
         }
     }
 }

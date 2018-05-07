@@ -1,6 +1,7 @@
 package com.twu.biblioteca.data;
 
 import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.Movie;
 import com.twu.biblioteca.model.User;
 
 import java.util.ArrayList;
@@ -16,6 +17,11 @@ public class Api implements ApiInterface {
     @Override
     public List<User> getUsers() {
         return getMockedUsers();
+    }
+
+    @Override
+    public List<Movie> getMovies() {
+        return getMockedMovies();
     }
 
     private List<Book> getMockedBooks() {
@@ -36,5 +42,14 @@ public class Api implements ApiInterface {
         users.add(new User("Clara", "456-7890", "clara@email.com", "Street nothing", "123132132", "123"));
 
         return users;
+    }
+
+    private List<Movie> getMockedMovies() {
+        List<Movie> movies = new ArrayList<>();
+
+        movies.add(new Movie("Lagoa Azul", 1980, "Eduarda", 2));
+        movies.add(new Movie("Todo mundo em pânico", 2014, "Késsia", 5));
+
+        return movies;
     }
 }

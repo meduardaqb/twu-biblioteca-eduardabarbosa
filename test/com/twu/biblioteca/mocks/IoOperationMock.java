@@ -1,6 +1,7 @@
 package com.twu.biblioteca.mocks;
 
 import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.Movie;
 import com.twu.biblioteca.util.IoOperationInterface;
 
 import java.util.LinkedList;
@@ -12,6 +13,7 @@ public class IoOperationMock implements IoOperationInterface {
     public boolean printErrorMessageWasCalled = false;
     public boolean printMessageWasCalled = false;
     public boolean showBookListWasCalled = false;
+    public boolean showMovieListWasCalled = false;
 
     private LinkedList<String> inputQueue;
 
@@ -40,6 +42,11 @@ public class IoOperationMock implements IoOperationInterface {
     @Override
     public void showBookList(List<Book> bookList) {
         showBookListWasCalled = true;
+    }
+
+    @Override
+    public void showMovieList(List<Movie> movieList) {
+        showMovieListWasCalled = true;
     }
 
     public void setInputReturn(LinkedList<String> inputQueue) {

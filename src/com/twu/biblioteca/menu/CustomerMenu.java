@@ -3,7 +3,7 @@ package com.twu.biblioteca.menu;
 import com.twu.biblioteca.data.ApiInterface;
 import com.twu.biblioteca.exception.UserNonExistsException;
 import com.twu.biblioteca.model.Auth;
-import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.model.RentalAgency;
 import com.twu.biblioteca.model.User;
 import com.twu.biblioteca.util.Constants;
 import com.twu.biblioteca.util.IoOperationInterface;
@@ -12,13 +12,13 @@ public class CustomerMenu implements CustomerMenuInterface {
     private UserTypeMenuInterface userTypeMenu;
     private LoginMenu loginMenu;
     private IoOperationInterface io;
-    private Library library;
+    private RentalAgency rentalAgency;
     private ApiInterface api;
 
-    public CustomerMenu(UserTypeMenuInterface userTypeMenu, IoOperationInterface io, Library library, ApiInterface api) {
+    public CustomerMenu(UserTypeMenuInterface userTypeMenu, IoOperationInterface io, RentalAgency rentalAgency, ApiInterface api) {
         this.userTypeMenu = userTypeMenu;
         this.io = io;
-        this.library = library;
+        this.rentalAgency = rentalAgency;
         this.api = api;
         this.loginMenu = new LoginMenu(new AuthResponseInterface() {
             @Override
@@ -44,6 +44,7 @@ public class CustomerMenu implements CustomerMenuInterface {
     public void customerMenu() {
         io.printMessage(Constants.WELCOME_MESSAGE);
         io.printMessage(Constants.LIST_BOOKS);
+        io.printMessage(Constants.LIST_MOVIES);
         io.printMessage(Constants.USER_INFORMATION);
         io.printMessage(Constants.BACK);
 
@@ -55,6 +56,8 @@ public class CustomerMenu implements CustomerMenuInterface {
             bookListMenu();
         } else if (input.equals("b")) {
             this.userTypeMenu.userTypeChoiceMenu();
+        }  else if (input.equals("m")) {
+           movieListMenu();
         } else if (input.equals("u")) {
             this.loginMenu.signInForm();
         } else {
@@ -64,7 +67,13 @@ public class CustomerMenu implements CustomerMenuInterface {
     }
 
     private void bookListMenu() {
-        io.showBookList(this.library.getAvailableBookList());
+        io.showBookList(this.rentalAgency.getAvailableBookList());
+        io.printMessage(Constants.BACK);
+        handleBookListMenuChoice(io.getInput());
+    }
+
+    private void movieListMenu() {
+        io.showMovieList(this.rentalAgency.getAvailableMovieList());
         io.printMessage(Constants.BACK);
         handleBookListMenuChoice(io.getInput());
     }

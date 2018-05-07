@@ -5,7 +5,7 @@ import com.twu.biblioteca.menu.UserTypeMenuInterface;
 import com.twu.biblioteca.mocks.ApiMock;
 import com.twu.biblioteca.mocks.IoOperationMock;
 import com.twu.biblioteca.mocks.UserTypeMenuMock;
-import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.model.RentalAgency;
 import com.twu.biblioteca.util.IoOperationInterface;
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,7 +16,7 @@ public class CustomerMenuTest {
 
     @Test
     public void customerMenuShouldCallUserTypeChoiceMenu() {
-        Library library = new Library(new ApiMock());
+        RentalAgency rentalAgency = new RentalAgency(new ApiMock());
         UserTypeMenuInterface userTypeMenu = new UserTypeMenuMock();
         IoOperationInterface ioOperation = new IoOperationMock();
 
@@ -26,7 +26,7 @@ public class CustomerMenuTest {
 
 
 
-        CustomerMenu customerMenu = new CustomerMenu(userTypeMenu, ioOperation, library, new ApiMock());
+        CustomerMenu customerMenu = new CustomerMenu(userTypeMenu, ioOperation, rentalAgency, new ApiMock());
 
         customerMenu.customerMenu();
 
@@ -36,14 +36,14 @@ public class CustomerMenuTest {
     @Test
     public void customerMenuShouldCallBookListMenu() {
 
-        Library library = new Library(new ApiMock());
+        RentalAgency rentalAgency = new RentalAgency(new ApiMock());
         UserTypeMenuMock userTypeMenu = new UserTypeMenuMock();
         IoOperationMock ioOperation = new IoOperationMock();
         LinkedList<String> linkedList = new LinkedList<String>();
         linkedList.add("l");
         ioOperation.setInputReturn(linkedList);
 
-        CustomerMenu customerMenu = new CustomerMenu(userTypeMenu, ioOperation, library, new ApiMock());
+        CustomerMenu customerMenu = new CustomerMenu(userTypeMenu, ioOperation, rentalAgency, new ApiMock());
 
         try {
             customerMenu.customerMenu();
@@ -53,15 +53,34 @@ public class CustomerMenuTest {
     }
 
     @Test
+    public void customerMenuShouldCallMovieListMenu() {
+
+        RentalAgency rentalAgency = new RentalAgency(new ApiMock());
+        UserTypeMenuMock userTypeMenu = new UserTypeMenuMock();
+        IoOperationMock ioOperation = new IoOperationMock();
+        LinkedList<String> linkedList = new LinkedList<String>();
+        linkedList.add("m");
+        ioOperation.setInputReturn(linkedList);
+
+        CustomerMenu customerMenu = new CustomerMenu(userTypeMenu, ioOperation, rentalAgency, new ApiMock());
+
+        try {
+            customerMenu.customerMenu();
+            Assert.assertTrue(ioOperation.showMovieListWasCalled);
+        }
+        catch(StackOverflowError e) { }
+    }
+
+    @Test
     public void customerMenuShouldCallPrintErrorMessage() {
-        Library library = new Library(new ApiMock());
+        RentalAgency rentalAgency = new RentalAgency(new ApiMock());
         UserTypeMenuMock userTypeMenu = new UserTypeMenuMock();
         IoOperationMock ioOperation = new IoOperationMock();
         LinkedList<String> linkedList = new LinkedList<String>();
         linkedList.add("c");
         ioOperation.setInputReturn(linkedList);
 
-        CustomerMenu customerMenu = new CustomerMenu(userTypeMenu, ioOperation, library, new ApiMock());
+        CustomerMenu customerMenu = new CustomerMenu(userTypeMenu, ioOperation, rentalAgency, new ApiMock());
 
         try {
             customerMenu.customerMenu();
@@ -72,14 +91,14 @@ public class CustomerMenuTest {
 
     @Test
     public void customerMenuShouldCallPrintMessage() {
-        Library library = new Library(new ApiMock());
+        RentalAgency rentalAgency = new RentalAgency(new ApiMock());
         UserTypeMenuMock userTypeMenu = new UserTypeMenuMock();
         IoOperationMock ioOperation = new IoOperationMock();
         LinkedList<String> linkedList = new LinkedList<String>();
         linkedList.add("u");
         ioOperation.setInputReturn(linkedList);
 
-        CustomerMenu customerMenu = new CustomerMenu(userTypeMenu, ioOperation, library, new ApiMock());
+        CustomerMenu customerMenu = new CustomerMenu(userTypeMenu, ioOperation, rentalAgency, new ApiMock());
 
         try {
             customerMenu.customerMenu();

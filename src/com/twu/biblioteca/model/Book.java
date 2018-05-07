@@ -1,29 +1,17 @@
 package com.twu.biblioteca.model;
 
-public class Book {
+import com.twu.biblioteca.util.ITEM_TYPE;
 
-    private String name;
+public class Book extends Item {
+
     private String author;
     private int yearPublished;
-    private boolean available;
 
     public Book(String name, String author, int yearPublished) {
         this.name = name;
         this.author = author;
         this.yearPublished = yearPublished;
         this.available = true;
-    }
-
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public String getAuthor() {
@@ -41,5 +29,10 @@ public class Book {
         return this.name.equals(book.name) &&
                 this.author.equals(book.author) &&
                 this.yearPublished == book.yearPublished;
+    }
+
+    @Override
+    ITEM_TYPE getType() {
+        return ITEM_TYPE.BOOK;
     }
 }

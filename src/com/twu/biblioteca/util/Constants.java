@@ -9,15 +9,33 @@ public class Constants {
     public static final String INVALID_CARACTER = "Select a valid option!";
     public static final String LIST_BOOKS = "l - List Books";
     public static final String USER_INFORMATION = "u - User information";
+    public static final String LIST_MOVIES = "m - List Movies";
     public static final String SELECT_ACTION = "Select action";
+
+
     public static final String RETURN_BOOK = "r - Return book";
     public static final String CHECKOUT_BOOK = "c - Checkout book";
-    public static final String SELECT_BOOK_CHECKOUT = "Select book by id to check out";
-    public static final String SELECT_BOOK_RETURN = "Select book by id to return";
-    public static final String SUCCESSFUL_CHECKOUT = "Thank you! Enjoy the book";
-    public static final String UNSUCCESSFUL_CHECKOUT = "That book is not available";
-    public static final String SUCCESSFUL_RETURN = "Thank you for returning the book";
-    public static final String UNSUCCESSFUL_RETURN = "That is not a valid book to return.";
+
+
+    public static final String RETURN_MOVIE = "t - Return movie";
+    public static final String CHECKOUT_MOVIE = "p - Checkout movie";
+
+
+    public static final String SELECT_ITEM_CHECKOUT = "Select item by id to check out";
+    public static final String SELECT_ITEM_RETURN = "Select item by id to return";
+
+
+
+    public static final String SUCCESSFUL_CHECKOUT = "Thank you! Enjoy the item";
+    public static final String UNSUCCESSFUL_CHECKOUT = "That item is not available";
+
+
+
+    public static final String SUCCESSFUL_RETURN = "Thank you for returning the item";
+    public static final String UNSUCCESSFUL_RETURN = "That is not a valid item to return.";
+
+
+
     public static final String USER_REGISTRATION = "Tap your registration";
     public static final String USER_PASSWORD = "Tap your password";
     public static final String INVALID_REGISTRATION = "You tapped an invalid registration";

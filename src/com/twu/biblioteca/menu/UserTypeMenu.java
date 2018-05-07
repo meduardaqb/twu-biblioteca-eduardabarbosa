@@ -1,7 +1,7 @@
 package com.twu.biblioteca.menu;
 
 import com.twu.biblioteca.data.ApiInterface;
-import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.model.RentalAgency;
 import com.twu.biblioteca.util.Constants;
 import com.twu.biblioteca.util.IoOperationInterface;
 
@@ -10,12 +10,12 @@ public class UserTypeMenu implements UserTypeMenuInterface {
     private CustomerMenuInterface customerMenu;
     private LibrarianMenuInterface librarianMenu;
     private IoOperationInterface io;
-    private Library library;
+    private RentalAgency rentalAgency;
 
     public UserTypeMenu(IoOperationInterface io, ApiInterface api) {
-        this.library = new Library(api);
-        this.customerMenu = new CustomerMenu(this, io, this.library, api);
-        this.librarianMenu = new LibrarianMenu(this, io, this.library, api);
+        this.rentalAgency = new RentalAgency(api);
+        this.customerMenu = new CustomerMenu(this, io, this.rentalAgency, api);
+        this.librarianMenu = new LibrarianMenu(this, io, this.rentalAgency, api);
         this.io = io;
     }
 
